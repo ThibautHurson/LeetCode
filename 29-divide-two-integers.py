@@ -5,7 +5,7 @@ class Solution(object):
         :type divisor: int
         :rtype: int
         """
-        negative = (dividend < 0) is (divisor < 0) # look if the result of the division is negative
+        negative = (dividend < 0) is not (divisor < 0) # look if the result of the division is negative
         dividend, divisor = abs(dividend), abs(divisor)
 
         res = 0
