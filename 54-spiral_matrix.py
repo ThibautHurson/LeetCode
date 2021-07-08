@@ -46,3 +46,13 @@ class Solution(object):
             r1 += 1; r2 -= 1
             c1 += 1; c2 -= 1
         return ans
+
+'''
+Time Complexity: O(N)O(N), where NN is the total number of elements in the input matrix. We add every element in the matrix to our final answer.
+
+Space Complexity:
+
+O(1)O(1) without considering the output array, since we don't use any additional data structures for our computations.
+
+O(N)O(N) if the output array is taken into account.
+'''
