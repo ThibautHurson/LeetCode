@@ -28,24 +28,16 @@ class Solution:
         if not have_num:
             return 0
         
-        if s[max(idx-1,0)] == '-':
-            sign = -1
-        else:
-            sign = +1
+        sign = -1 if s[max(idx-1,0)] == '-' else 1
         
         start = idx
         while idx < n and s[idx].isnumeric() :
             idx += 1
-        
-        max_value = 2**31 
         res = sign*int(s[start:idx])
-        if res > max_value - 1 :
-            return max_value -1
-        if res < -max_value:
-            return -max_value
-        
-        return res
+
+        return max(min(res, 2**31 - 1), -2**31)
 '''
 Time Complexity: O(N). Here, N is the length of string str. We perform only one iteration over string str.
 Space Complexity: O(1) We use constant extra space for storing sign of the result.
 '''
+
