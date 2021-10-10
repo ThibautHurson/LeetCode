@@ -1,3 +1,34 @@
+#Aproach1: Naive for loops 
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        mapping = {'2': 'abc', '3': 'def', '4': 'ghi', '5':'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        if not len(digits):
+            return []
+        res = ['']
+        for d in digits:
+            new = []
+            for i, w in enumerate(res):
+                for j in range(len(mapping[d])):
+                    new.append(res[i] + mapping[d][j])
+            res = new
+        return res
+
+# Approach 3: Itertools
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        mapping = {'2': 'abc', '3': 'def', '4': 'ghi', '5':'jkl', '6': 'mno', '7': 'pqrs', '8': 'tuv', '9': 'wxyz'}
+        if not len(digits):
+            return []
+        elif len(digits) == 1:
+            return [val for val in mapping[digits]]
+        comb = []
+        for d in digits:
+            comb.append(mapping[d])
+        res = map(''.join, itertools.product(*comb))
+        return res    
+
+
+#Approach 2: Backtrack
 class Solution:
     def letterCombinations(self, digits):
         """
