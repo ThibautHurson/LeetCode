@@ -3,14 +3,25 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:     
         current_sum = best_sum = nums[0]
-        for x in nums:
-            current_sum = max(x, current_sum + x)
+        for i in range(1, len(nums)):
+            current_sum = max(nums[i], current_sum + nums[i])
             best_sum = max(best_sum, current_sum)
         return best_sum
+
 '''
 Time complexity: O(N)
 Space complexity: O(1)
 '''
+
+# Same Idea, a bit different
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:     
+        res = nums[0]
+        for i in range(1,len(nums)):
+            nums[i] = max(nums[i], nums[i]+nums[i-1])
+        return max(nums)
+
+
 #Divide and Conquer
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
@@ -24,7 +35,7 @@ class Solution:
             rl, rr, rm, rs = dnc(nums, m+1, r)  # left max, right max, mid max, sum of right
             ml = max(ll, ls + rl)
             mr = max(rr, rs + lr)
-            mm = max(lc, rm, lr + rl)
+            mm = max(lm, rm, lr + rl)
             ms = ls + rs
             return ml, mr, mm, ms  # left max, right max, mid max, sum of merge
         
